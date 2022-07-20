@@ -50,6 +50,13 @@ export default function rarityCalculator() {
             element.rarity = calculatedRarity;
           }
 
+          let possibilitySum = nft_list.reduce((acc, cur) => acc + cur.rarity, 0)
+
+          for (let i = 0; i < nft_list.length; i++) {
+            const element = nft_list[i];
+            element.rarity = element.rarity / possibilitySum * 100;
+          }
+
           fs.writeFile(dir + fileName, JSON.stringify(nft_list), function (err) {
             if (err) {
               console.error(err);

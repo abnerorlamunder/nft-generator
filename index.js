@@ -2,6 +2,7 @@ import inquirer from 'inquirer';
 import traitsGenerator from './src/traits-generator.js';
 import rarityCalculator from './src/rarity-calculator.js';
 import artworkGenerator from './src/artwork-generator.js';
+import mint from './src/mint.js';
 
 inquirer
   .prompt([
@@ -9,7 +10,7 @@ inquirer
       type: 'list',
       name: 'Options',
       message: 'Select what you want to do',
-      choices: ['Everything', 'Generate traits', 'Calculate rarity', 'Generate artwork', 'Exit'],
+      choices: ['Full generate', 'Generate traits', 'Calculate rarity', 'Generate artwork', 'Mint', 'Exit'],
     },
   ])
   .then(async answers => {
@@ -17,7 +18,7 @@ inquirer
       process.exit()
     } else {
       switch (answers.Options) {
-        case 'Everything':
+        case 'Full generate':
           await traitsGenerator();
           await rarityCalculator();
           await artworkGenerator();
@@ -30,6 +31,9 @@ inquirer
           break;
         case 'Generate artwork':
           await artworkGenerator();
+          break;
+        case 'Mint':
+          await mint();
           break;
         default:
           break;

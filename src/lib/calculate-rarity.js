@@ -5,7 +5,7 @@ export function averageTrait(element) {
 }
 
 export function statistic(element) {
-  return traitsWeight.background[element.background][0] / 100 * traitsWeight.border[element.border][0] / 100 * traitsWeight.icon[element.icon][0] / 100 * traitsWeight.type[element.type][0] / 100
+  return traitsWeight.background[element.background][0] * traitsWeight.border[element.border][0] * traitsWeight.icon[element.icon][0] * traitsWeight.type[element.type][0]
 }
 
 export function rarityScore(element) {
